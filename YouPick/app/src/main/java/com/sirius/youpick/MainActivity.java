@@ -8,9 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
+import com.foursquare.android.nativeoauth.FoursquareOAuth;
 
 public class MainActivity extends AppCompatActivity {
 
+    static final int REQUEST_CODE_FSQ_CONNECT = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,5 +51,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /** Called when the user clicks the LogIn button */
+    public void logIn(View view) {
+        // Do something in response to button
+        Intent intent = FoursquareOAuth.getConnectIntent(this, "OFKAJQFYDNI1QUALLZENVJAOAYDIZXNWG0QCZKLYCFQELT53");
+        startActivityForResult(intent, REQUEST_CODE_FSQ_CONNECT);
     }
 }
